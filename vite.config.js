@@ -2,7 +2,9 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  base: "/Project-12/", // <-- ADDED THIS LINE GITHUB PAGES
+export default defineConfig(({ mode }) => {
+  return {
+    plugins: [react()],
+    base: mode === 'gh-pages' ? '/Project-12/' : '/', // <-- ADDED THIS LINE GITHUB PAGES AND NETLIFY
+  }
 })
