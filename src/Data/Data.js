@@ -41,9 +41,9 @@ const portfolioData = {
     tools: ["Git & GitHub", "npm / yarn", "VS Code", "Firebase", "Netlify", "Responsive Design"]
   },
   contact: {
-    email: "your.email@example.com",
-    linkedin: "#",
-    github: "#"
+    email: "humam.01@hotmail.com",
+    linkedin: "https://www.linkedin.com/in/humhum-tk-aa1098274/",
+    github: "https://github.com/humamT"
   }
 };
 
