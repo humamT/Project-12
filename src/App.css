@@ -96,12 +96,12 @@
 
 /* Hero Section */
 .hero-content {
-    min-height: 600px;
     display: flex;
     align-items: center;
     text-align: center;
     position: absolute;
-    top: 14rem;
+    top: 5rem;
+
 }
 
 .hero-content h1 {
@@ -460,6 +460,15 @@
     .contact-links .separator {
         display: inline;
     }
+
+    .hero-content {
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    top: 14rem;
+}
 
     .hero-content h1 {
         font-size: 8rem;
