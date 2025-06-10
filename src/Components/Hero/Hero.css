@@ -1,0 +1,15 @@
+#home {
+  /* Background properties (these are all correct) */
+  background-image: url('./milad-fakurian-XnkLo3xc960-unsplash.jpg');
+  
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+
+  /* --- ADD THESE 4 LINES TO CENTER THE CONTENT --- */
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;    /* Centers vertically */
+  text-align: center;       /* Ensures the text inside is centered */
+}

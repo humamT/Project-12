@@ -1,4 +1,5 @@
 import Section from '../Section/Section';
+import './Hero.css'; // Assuming you have a CSS file for styles
 
 const Hero = ({ data }) => (
   <Section id="home">
