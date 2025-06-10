@@ -13,7 +13,7 @@ const portfolioData = {
       shortDescription: "A dynamic and responsive image carousel built with vanilla JavaScript.",
       longDescription: "This project is a clean and functional image slider created to showcase different prints. It features interactive navigation with previous/next arrows and clickable dots that correspond to each slide. The JavaScript logic dynamically updates the banner image, the descriptive text, and highlights the active dot based on the user's selection, providing a seamless browsing experience.",
       tags: ["HTML5", "CSS3", "DOM Manipulation"],
-      image: "./src/assets/Images/print-it-preview.png",
+      image: "../public/Images/print-it-preview.png",
       liveUrl: "https://humamt.github.io/Project-5/",
       codeUrl: "https://github.com/humamT/Project-5" 
     },
@@ -22,7 +22,7 @@ const portfolioData = {
       shortDescription: "A modern and elegant real estate site for finding and viewing apartment listings.",
       longDescription: "Kasa is a fictional real estate listing platform that allows users to browse and view details for various rental properties. It features a clean, responsive interface with a homepage gallery, individual property pages with image carousels, ratings, and detailed descriptions. The project showcases skills in building a multi-page, component-based application.",
       tags: ["React", "JavaScript", "SCSS"],
-      image: "./src/assets/Images/Kasa.png",
+      image: "../public/Images/Kasa.png",
       liveUrl: "https://humamt.github.io/Project-7/",
       codeUrl: "https://github.com/humamT/Project-7"
     },
@@ -31,7 +31,7 @@ const portfolioData = {
       shortDescription: "A professional portfolio website for Nina Carducci, a photographer showcasing her work and services.",
       longDescription: "A clean and elegant portfolio website created for the photographer Nina Carducci. The site features a gallery of her photography and a detailed services section with clear pricing for different tasks like photoshoots and retouching. The project focuses on providing an online presence that effectively markets her skills and services to potential clients.",
       tags: ["JavaScript", "CSS3", "HTML5"],
-      image: "./src/assets/Images/Nina.png",
+      image: "../public/Images/Nina.png",
       liveUrl: "https://humamt.github.io/Project-8/",
       codeUrl: "https://github.com/humamT/Project-8"
     }
