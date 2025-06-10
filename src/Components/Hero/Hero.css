@@ -1,27 +1,22 @@
 #home {
+  /* Sizing and Layout */
   min-height: 100vh;
+  display: flex;
   align-items: center;
-  text-align: center;
-  position: relative; /* This is needed for the background */
-  z-index: 1;
-}
+  justify-content: center;
 
-#home::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1; /* Puts background behind the content */
-
-  /* Simple path to the image in the 'public/images' folder */
-  background-image: url('../../../public/Images/background.jpg');
+  /* The working background image path */
+  background-image: url('../../../public/images/background.jpg');
   
+  /* The properties to make it look right */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   
   /* This makes the background stay fixed while scrolling */
   background-attachment: fixed;
+  
+  /* --- THIS IS THE FIX --- */
+  /* This disables the scroll animation, allowing the background to be fixed. */
+  transform: none;
 }
