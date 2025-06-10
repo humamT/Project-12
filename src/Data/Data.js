@@ -9,31 +9,31 @@ const portfolioData = {
   },
   projects: [
     {
-      title: "E-commerce Platform",
-      shortDescription: "A fully responsive e-commerce front-end with cart functionality.",
-      longDescription: "This project is a complete front-end for a modern e-commerce website. It features a product catalog, detailed product pages, a shopping cart, and a checkout process. Built with React, it focuses on state management for a seamless user experience.",
-      tags: ["React", "JavaScript", "CSS3"],
-      image: "https://placehold.co/600x400/a79a8e/FFFFFF?text=Project+1",
-      liveUrl: "#",
-      codeUrl: "#"
+      title: "Print It!",
+      shortDescription: "A dynamic and responsive image carousel built with vanilla JavaScript.",
+      longDescription: "This project is a clean and functional image slider created to showcase different prints. It features interactive navigation with previous/next arrows and clickable dots that correspond to each slide. The JavaScript logic dynamically updates the banner image, the descriptive text, and highlights the active dot based on the user's selection, providing a seamless browsing experience.",
+      tags: ["HTML5", "CSS3", "DOM Manipulation"],
+      image: "https://placehold.co/600x400/a79a8e/FFFFFF?text=Print+It!",
+      liveUrl: "https://humamt.github.io/Project-5/",
+      codeUrl: "https://github.com/humamT/Project-5" 
     },
     {
-      title: "Task Management App",
-      shortDescription: "A sleek and intuitive to-do list application to organize your daily tasks.",
-      longDescription: "A task management application that allows users to create, update, delete, and track their tasks. It features drag-and-drop reordering and uses local storage to persist data. The goal was to create a clean, minimalist UI that is highly functional.",
-      tags: ["JavaScript", "HTML5", "CSS3"],
-      image: "https://placehold.co/600x400/a79a8e/FFFFFF?text=Project+2",
-      liveUrl: "#",
-      codeUrl: "#"
+      title: "Kasa - Real Estate Listings",
+      shortDescription: "A modern and elegant real estate site for finding and viewing apartment listings.",
+      longDescription: "Kasa is a fictional real estate listing platform that allows users to browse and view details for various rental properties. It features a clean, responsive interface with a homepage gallery, individual property pages with image carousels, ratings, and detailed descriptions. The project showcases skills in building a multi-page, component-based application.",
+      tags: ["React", "JavaScript", "SCSS"],
+      image: "https://placehold.co/600x400/a79a8e/FFFFFF?text=Kasa",
+      liveUrl: "https://humamt.github.io/Project-7/",
+      codeUrl: "https://github.com/humamT/Project-7"
     },
     {
-      title: "Portfolio Website Template",
-      shortDescription: "This very portfolio! A template for developers to showcase their work.",
-      longDescription: "A responsive, single-page portfolio template built with modern web technologies. It's designed to be easily customizable. Features include smooth scrolling, a project modal, and a clean, professional design aesthetic. This project itself is a testament to my skills in frontend development.",
+      title: "Portfolio Nina Carducci",
+      shortDescription: "A professional portfolio website for Nina Carducci, a photographer showcasing her work and services.",
+      longDescription: "A clean and elegant portfolio website created for the photographer Nina Carducci. The site features a gallery of her photography and a detailed services section with clear pricing for different tasks like photoshoots and retouching. The project focuses on providing an online presence that effectively markets her skills and services to potential clients.",
       tags: ["JavaScript", "CSS3", "HTML5"],
       image: "https://placehold.co/600x400/a79a8e/FFFFFF?text=Project+3",
-      liveUrl: "#",
-      codeUrl: "#"
+      liveUrl: "https://humamt.github.io/Project-8/",
+      codeUrl: "https://github.com/humamT/Project-8"
     }
   ],
   skills: {
@@ -42,7 +42,7 @@ const portfolioData = {
   },
   contact: {
     email: "humam.01@hotmail.com",
-    linkedin: "https://www.linkedin.com/in/humhum-tk-aa1098274/",
+    linkedin: "https://www.linkedin.com/in/humam-altoukhi-aa1098274/",
     github: "https://github.com/humamT"
   }
 };
