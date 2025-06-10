@@ -177,6 +177,12 @@
     justify-content: center;
     color: var(--medium-gray);
     flex-shrink: 0;
+    overflow: hidden;
+}
+
+.about-image-container img {
+    width: -webkit-fill-available;
+    overflow: hidden;
 }
 
 .about-text {
@@ -464,10 +470,6 @@
     .about-layout {
         flex-direction: row;
         gap: 4rem;
-    }
-
-    .about-layout>div {
-        flex: 1;
     }
 
     .about-image-container {
