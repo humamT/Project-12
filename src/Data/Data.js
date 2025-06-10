@@ -1,7 +1,7 @@
 const portfolioData = {
   name: "Humam ALTOUKHI",
   tagline: "Creative Web Integrator & Frontend Developer",
-  introduction: "I build intuitive, responsive, and beautiful web applications. From concept to deployment, I focus on creating seamless user experiences.",
+  introduction: "Creating responsive web applications from concept to deployment",
   about: {
     p1: "Hello! I'm Humam, a passionate web developer with a knack for creating clean, efficient, and engaging digital experiences. My journey into web development started with a fascination for how things work on the internet, which quickly grew into a career where I can blend creativity with problem-solving.",
     p2: "I specialize in frontend development with React and have a strong foundation in HTML, CSS, and JavaScript. I'm dedicated to writing clean, maintainable code and am always eager to learn new technologies and improve my skills.",

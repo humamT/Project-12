@@ -8,7 +8,7 @@ const Hero = ({ data }) => (
         <h1>{data.name}</h1>
         <p className="tagline">{data.tagline}</p>
         <p className="introduction">{data.introduction}</p>
-        <a href="#projects" className="hero-button">View My Work</a>
+        <a href="#projects" className="hero-button">View More</a>
       </div>
     </div>
   </Section>
