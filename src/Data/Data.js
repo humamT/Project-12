@@ -81,7 +81,7 @@ const portfolioData = {
   projects: [
     {
       title: {
-        fr: "Imprimez-le !",
+        fr: "Print It!",
         en: "Print It!",
       },
       shortDescription: {
