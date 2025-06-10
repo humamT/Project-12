@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './App.css'; // Import our new stylesheet
+import './App.css'; 
 import Header from './Components/Header/Header.jsx';
 import Hero from './Components/Hero/Hero.jsx';
 import About from './Components/About/About.jsx';
@@ -8,9 +8,11 @@ import Skills from './Components/Skills/Skills.jsx';
 import Contact from './Components/Contact/Contact.jsx';
 import Footer from './Components/Footer/Footer.jsx';
 import portfolioData from './Data/Data.js';
-
+import { useLanguage } from './context/LanguageContext'; // <-- 1. Import the hook
 
 const ProjectModal = ({ project, closeModal }) => {
+  const { language } = useLanguage(); // <-- 2. Get the current language from the context
+
   useEffect(() => {
     const handleEsc = (event) => {
       if (event.key === 'Escape') closeModal();
@@ -30,17 +32,25 @@ const ProjectModal = ({ project, closeModal }) => {
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <div className="modal-inner">
           <div className="modal-header">
-            <h2>{project.title}</h2>
+            {/* 3. Access the title using the language variable */}
+            <h2>{project.title[language]}</h2>
             <button onClick={closeModal} className="modal-close-button">&times;</button>
           </div>
-          <img src={project.image} alt={project.title} />
+          {/* 4. Update the alt text as well */}
+          <img src={project.image} alt={project.title[language]} />
           <div className="tags">
             {project.tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
           </div>
-          <p className="description">{project.longDescription}</p>
+          {/* 5. Access the long description using the language variable */}
+          <p className="description">{project.longDescription[language]}</p>
           <div className="modal-actions">
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="modal-button modal-button-primary">Live Demo</a>
-            <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" className="modal-button modal-button-secondary">View Code</a>
+            {/* 6. Make button text dynamic */}
+            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="modal-button modal-button-primary">
+              {language === 'fr' ? 'Démo Live' : 'Live Demo'}
+            </a>
+            <a href={project.codeUrl} target="_blank" rel="noopener noreferrer" className="modal-button modal-button-secondary">
+              {language === 'fr' ? 'Voir le Code' : 'View Code'}
+            </a>
           </div>
         </div>
       </div>
