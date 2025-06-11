@@ -18,7 +18,7 @@ const Contact = ({ data }) => {
         </p>
 
         {/* The Contact Form is now directly on the page */}
-        <form name="contact" data-netlify="true" method="POST" className="contact-form">
+        <form name="contact" data-netlify="true" method="POST" action="/" className="contact-form">
           {/* This hidden input is required for Netlify Forms to work */}
           <input type="hidden" name="form-name" value="contact" />
 
