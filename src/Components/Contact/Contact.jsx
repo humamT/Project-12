@@ -65,7 +65,7 @@ const Contact = ({ data }) => {
         </p>
 
         <form
-          action="https://formspree.io/f/YOUR_UNIQUE_ID" // <-- PASTE YOUR FORMPSPREE URL HERE
+          action="https://formspree.io/f/mdkzgkwe" // <-- PASTE YOUR FORMPSPREE URL HERE
           method="POST"
           onSubmit={handleSubmit}
           className="contact-form"
