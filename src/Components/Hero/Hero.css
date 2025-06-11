@@ -12,11 +12,18 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  
+
   /* This makes the background stay fixed while scrolling */
   background-attachment: fixed;
-  
+
   /* --- THIS IS THE FIX --- */
   /* This disables the scroll animation, allowing the background to be fixed. */
   transform: none;
+}
+
+@media (max-width: 768px) {
+  #home {
+    background-image: linear-gradient(to top, rgba(255, 255, 255, 0.9), transparent 50%) url('/images/background.jpg');
+    /* background-image: linear-gradient(to top, rgba(255, 255, 255, 0.9), transparent 70%), url('../../../public/images/background.jpg'); */
+  }
 }

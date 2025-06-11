@@ -126,6 +126,7 @@
     margin: 0 auto 4rem;
     color: #636363;
     font-size: 1.1rem;
+    text-shadow: #93afb675 0px 0px 2px;
 }
 
 .hero-button {
@@ -575,6 +576,8 @@
         font-size: 8rem;
         margin: 2rem;
     }
+
+    
 
     .hero-content .tagline {
         font-size: 1.7rem;
