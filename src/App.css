@@ -152,7 +152,7 @@
 .section .section-subtitle {
     text-align: center;
     max-width: 42rem;
-    margin: 0 auto 4rem;
+    margin: 0 auto 3rem;
     color: var(--dark-gray);
     line-height: 1.6;
 }
@@ -317,6 +317,81 @@
     color: #d1d5db;
     display: none;
     /* Hide on mobile */
+}
+
+/* --- Contact Form Styles --- */
+
+/* The main container for the form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Space between form elements */
+  max-width: 600px; /* Keeps the form from being too wide */
+  margin: 2rem auto 0; /* Centers the form and adds space above */
+  width: 100%;
+}
+
+/* Container for each label-input pair */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  /* The gap is no longer needed since the label is gone */
+}
+
+/* Common styles for both input fields and the textarea */
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  font-family: inherit; /* Use the same font as the rest of the site */
+  border: 1px solid #ddd;
+  border-radius: 8px; /* Rounded corners */
+  background-color: #f9f9f9;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* ADDED: Style for the placeholder text */
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #999;
+  opacity: 1; /* Ensures placeholder is visible in all browsers */
+}
+
+/* Style for when a user clicks into a field */
+.contact-form input[type="text"]:focus,
+.contact-form input[type="email"]:focus,
+.contact-form textarea:focus {
+  outline: none; /* Remove default browser outline */
+  border-color: #547184; /* A nice highlight color */
+  box-shadow: 0 0 0 3px rgb(84 123 140 / 33%); /* Soft glow effect */
+}
+
+/* Specific styling for the textarea */
+.contact-form textarea {
+  resize: vertical; /* Allow vertical resizing, but not horizontal */
+  min-height: 120px;
+}
+
+/* Styling for the submit button */
+.contact-button {
+  padding: 0.9rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #a2b5b9; /* Primary button color */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  text-align: center;
+}
+
+/* Hover effect for the submit button */
+.contact-button:hover {
+  background-color: #4c7287; /* Darken the button on hover */
+  transform: translateY(-2px); /* Slight lift effect */
 }
 
 /* Footer */

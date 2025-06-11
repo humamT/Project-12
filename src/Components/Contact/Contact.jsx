@@ -1,49 +1,58 @@
-// import Section from '../Section/Section';
-
-// const Contact = ({ data }) => {
-//   return (
-//     <Section id="contact">
-//       <div className="container contact-container">
-//         <h2 className="section-title">Get In Touch</h2>
-//         <p className="section-subtitle">I'm currently open to new opportunities and collaborations. If you have a project in mind or just want to say hi, feel free to reach out.</p>
-//         <div className="contact-links">
-//           <a href={`mailto:${data.contact.email}`}>{data.contact.email}</a>
-//           <span className="separator">|</span>
-//           <a href={data.contact.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
-//           <span className="separator">|</span>
-//           <a href={data.contact.github} target="_blank" rel="noopener noreferrer">GitHub</a>
-//         </div>
-//       </div>
-//     </Section>
-//   );
-// };
-
-// export default Contact;
-
 import Section from '../Section/Section';
-import { useLanguage } from '../../context/LanguageContext'; // <-- 1. Import the useLanguage hook
+import { useLanguage } from '../../context/LanguageContext';
+
 
 const Contact = ({ data }) => {
-  const { language } = useLanguage(); // <-- 2. Get the current language from the context
+  const { language } = useLanguage();
 
   return (
     <Section id="contact">
       <div className="container contact-container">
-        {/* 3. Replace hardcoded title with dynamic text */}
+        {/* The main title and subtitle */}
         <h2 className="section-title">{language === 'fr' ? 'Contactez-Moi' : 'Get In Touch'}</h2>
-        
-        {/* 4. Replace hardcoded subtitle with dynamic text */}
         <p className="section-subtitle">
           {language === 'fr'
-            ? "Je suis actuellement ouvert à de nouvelles opportunités et collaborations. Si vous avez un projet en tête ou si vous voulez simplement dire bonjour, n'hésitez pas à me contacter."
-            : "I'm currently open to new opportunities and collaborations. If you have a project in mind or just want to say hi, feel free to reach out."
+            ? "Je suis actuellement ouvert à de nouvelles opportunités et collaborations. Si vous avez un projet en tête, n'hésitez pas à me contacter."
+            : "I'm currently open to new opportunities and collaborations. If you have a project in mind, feel free to reach out."
           }
         </p>
-        
+
+        {/* The Contact Form is now directly on the page */}
+        <form name="contact" data-netlify="true" method="POST" className="contact-form">
+          {/* This hidden input is required for Netlify Forms to work */}
+          <input type="hidden" name="form-name" value="contact" />
+
+          <div className="form-group">
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder={language === 'fr' ? 'Nom' : 'Name'}
+              required />
+          </div>
+          <div className="form-group">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder={language === 'fr' ? 'Email' : 'Email'}
+              required />
+          </div>
+          <div className="form-group">
+            <textarea
+              id="message"
+              name="message"
+              placeholder={language === 'fr' ? 'Message' : 'Message'}
+              rows="6"
+              required></textarea>
+          </div>
+          <button type="submit" className="contact-button">
+            {language === 'fr' ? 'Envoyer' : 'Send'}
+          </button>
+        </form>
+
+        {/* The social links are still at the bottom */}
         <div className="contact-links">
-          <a href={`mailto:${data.contact.email}`}>{data.contact.email}</a>
-          <span className="separator">|</span>
-          {/* Note: Proper names like "LinkedIn" and "GitHub" often don't need translation */}
           <a href={data.contact.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <span className="separator">|</span>
           <a href={data.contact.github} target="_blank" rel="noopener noreferrer">GitHub</a>
