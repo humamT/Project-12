@@ -10,12 +10,12 @@
   color: #888; /* Inactive color */
   font-weight: normal;
   transition: color 0.4s, font-weight 0.4s; /* Smooth transition */
+  opacity: 1;
 }
 
 /* ADD THIS - style for the ACTIVE language text */
 .lang-label-active {
-  color: white;
-  font-weight: bold;
+  opacity: 0;
 }
 
 /* --- Your existing styles below --- */
@@ -62,10 +62,6 @@
   transition: .4s;
 }
 
-input:checked + .slider {
-  /* background-color: #171717;
-  box-shadow: inset 2px 5px 10px rgb(0, 0, 0); */
-}
 
 input:checked + .slider:before {
   transform: translateX(2.8em) rotate(360deg);
