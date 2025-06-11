@@ -557,6 +557,54 @@
     color: var(--white-color);
 }
 
+/* --- Add this to the end of your App.css file --- */
+
+/* Styles for the success message popup */
+.success-popup {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  background-color: #28a745; /* A clear, positive green */
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 500;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+  z-index: 1000; /* Use a very high z-index to ensure it's on top of everything */
+  
+  /* The animation that makes it appear and disappear */
+  animation: fadeInOut 4s ease-in-out forwards;
+}
+
+/* The keyframe animation for the popup */
+@keyframes fadeInOut {
+  /* It starts invisible and slightly below its final position */
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  /* It fades in and moves up */
+  15% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  /* It stays visible for a while */
+  85% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  /* It fades out and moves down */
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+}
+
+
+
 /* ==========================================================================
    6. Responsive Tablet & Desktop Styles
    ========================================================================== */

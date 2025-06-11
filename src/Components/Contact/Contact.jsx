@@ -1,19 +1,27 @@
-import React, { useState } from 'react'; // 1. Import useState
+import React, { useState, useEffect } from 'react';
 import Section from '../Section/Section';
 import { useLanguage } from '../../context/LanguageContext';
 
 const Contact = ({ data }) => {
   const { language } = useLanguage();
-  // 2. State to manage the form's submission status
   const [formState, setFormState] = useState({
     submitting: false,
     succeeded: false,
   });
 
-  // 3. The submission handler function
+  // This effect will reset the success state after the popup animation finishes
+  useEffect(() => {
+    if (formState.succeeded) {
+      const timer = setTimeout(() => {
+        setFormState(prevState => ({ ...prevState, succeeded: false }));
+      }, 4000); // Hide after 4 seconds to let the animation complete
+      return () => clearTimeout(timer);
+    }
+  }, [formState.succeeded]);
+
   const handleSubmit = (event) => {
-    event.preventDefault(); // Prevent the default page reload
-    setFormState({ submitting: true, succeeded: false }); // Show a "sending" state
+    event.preventDefault();
+    setFormState({ submitting: true, succeeded: false });
 
     const form = event.target;
     const formData = new FormData(form);
@@ -26,15 +34,13 @@ const Contact = ({ data }) => {
       }
     }).then(response => {
       if (response.ok) {
-        setFormState({ submitting: false, succeeded: true }); // Show success message
-        form.reset(); // Clear the form fields
+        setFormState({ submitting: false, succeeded: true });
+        form.reset();
       } else {
-        // Handle errors if you want
         setFormState({ submitting: false, succeeded: false });
         alert("Oops! There was a problem submitting your form.");
       }
     }).catch(error => {
-      // Handle network errors
       setFormState({ submitting: false, succeeded: false });
       alert("Oops! There was a network problem.");
     });
@@ -43,14 +49,23 @@ const Contact = ({ data }) => {
   return (
     <Section id="contact">
       <div className="container contact-container">
+        {/* Conditionally render the success popup based on the 'succeeded' state */}
+        {formState.succeeded && (
+          <div className="success-popup">
+            {language === 'fr' ? 'Message envoyé, merci !' : 'Message sent, thank you!'}
+          </div>
+        )}
+        
         <h2 className="section-title">{language === 'fr' ? 'Contactez-Moi' : 'Get In Touch'}</h2>
         <p className="section-subtitle">
-          {/* ... your subtitle text ... */}
+          {language === 'fr'
+            ? "Je suis actuellement ouvert à de nouvelles opportunités et collaborations. Si vous avez un projet en tête, n'hésitez pas à me contacter."
+            : "I'm currently open to new opportunities and collaborations. If you have a project in mind, feel free to reach out."
+          }
         </p>
 
-        {/* 4. Update the form tag and add the onSubmit handler */}
         <form
-          action="https://formspree.io/f/mdkzgkwe" // <-- PASTE YOUR FORMPSPREE URL HERE
+          action="https://formspree.io/f/YOUR_UNIQUE_ID" // <-- PASTE YOUR FORMPSPREE URL HERE
           method="POST"
           onSubmit={handleSubmit}
           className="contact-form"
@@ -80,11 +95,10 @@ const Contact = ({ data }) => {
             ></textarea>
           </div>
           
-          {/* 5. The button's text will now change based on the form state */}
           <button type="submit" className="contact-button" disabled={formState.submitting}>
-            {formState.succeeded ? (language === 'fr' ? 'Merci !' : 'Thank You!') :
-             formState.submitting ? (language === 'fr' ? 'Envoi...' : 'Sending...') :
-             (language === 'fr' ? 'Envoyer' : 'Send')}
+            {formState.submitting 
+              ? (language === 'fr' ? 'Envoi...' : 'Sending...') 
+              : (language === 'fr' ? 'Envoyer' : 'Send')}
           </button>
         </form>
 
