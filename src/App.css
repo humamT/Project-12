@@ -20,6 +20,7 @@
     right: 0;
     z-index: 30;
     transition: all 0.3s ease;
+    -webkit-backdrop-filter: blur(4px);
 }
 
 .header-scrolled {

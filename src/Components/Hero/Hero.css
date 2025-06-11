@@ -1,13 +1,13 @@
 #home {
   /* Sizing and Layout */
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   justify-content: center;
 
   /* The working background image path */
-  /* background-image: url('/images/background.jpg'); */
-  background-image: url('../../../public/images/background.jpg');
+  background-image: url('/images/background.jpg');
+  /* background-image: url('../../../public/images/background.jpg'); */
   /* The properties to make it look right */
   background-size: cover;
   background-position: center;
