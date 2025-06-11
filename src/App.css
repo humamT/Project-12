@@ -45,27 +45,44 @@
    2. Keyframe Animations
    ========================================================================== */
 @keyframes dropdownAnimation {
-    from {
-        opacity: 0;
-        transform: translateY(-15px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes dropdownAnimationReverse {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+}
 
-    to {
-        opacity: 0;
-        transform: translateY(-15px);
-    }
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+  15% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  85% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
 }
 
 /* ==========================================================================
@@ -119,14 +136,9 @@
 }
 
 /* --- Desktop Navigation --- */
-.main-nav {
-    display: none;
-    /* Hidden on mobile by default */
-}
-
+.main-nav,
 .desktop-lang-switch {
-    display: none;
-    /* Hidden on mobile by default */
+    display: none; /* Hidden on mobile by default */
 }
 
 /* --- Mobile Navigation --- */
@@ -379,8 +391,7 @@
     flex-direction: column;
 }
 
-.contact-form input[type="text"],
-.contact-form input[type="email"],
+.contact-form input,
 .contact-form textarea {
     width: 100%;
     padding: 0.8rem 1rem;
@@ -398,8 +409,7 @@
     opacity: 1;
 }
 
-.contact-form input[type="text"]:focus,
-.contact-form input[type="email"]:focus,
+.contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
     border-color: #547184;
@@ -412,33 +422,32 @@
 }
 
 .contact-button {
-    padding: 0.9rem 1.5rem;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #fff;
-    background-color: #a2b5b9;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    text-align: center;
+  padding: 0.9rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #a2b5b9;
+  border: none;
+  border-radius: 8px;
+  cursor: not-allowed;
+  opacity: 0.7;
+  transition: background-color 0.3s, transform 0.2s, opacity 0.3s;
+  text-align: center;
 }
 
-.contact-button:hover {
-    background-color: #4c7287;
-    transform: translateY(-2px);
+.contact-button-active {
+  background-color: #4c7287;
+  opacity: 1;
+  cursor: pointer;
 }
 
-/* --- Footer --- */
-.footer {
-    background-color: var(--white-color);
-    padding: 1.5rem 0;
-    text-align: center;
-    color: var(--medium-gray);
+.contact-button-active:hover {
+  background-color: #3a596a;
+  transform: translateY(-2px);
 }
 
 /* ==========================================================================
-   5. Modals
+   5. Modals & Popups
    ========================================================================== */
 .modal-backdrop {
     position: fixed;
@@ -557,59 +566,26 @@
     color: var(--white-color);
 }
 
-/* --- Add this to the end of your App.css file --- */
-
-/* Styles for the success message popup */
+/* --- Success Popup --- */
 .success-popup {
   position: fixed;
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  
-  background-color: #28a745; /* A clear, positive green */
+  background-color: #28a745;
   color: white;
   padding: 1rem 2rem;
   border-radius: 8px;
   font-weight: 500;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-
-  z-index: 1000; /* Use a very high z-index to ensure it's on top of everything */
-  
-  /* The animation that makes it appear and disappear */
+  z-index: 1000;
   animation: fadeInOut 4s ease-in-out forwards;
 }
 
-/* The keyframe animation for the popup */
-@keyframes fadeInOut {
-  /* It starts invisible and slightly below its final position */
-  0% {
-    opacity: 0;
-    transform: translate(-50%, 20px);
-  }
-  /* It fades in and moves up */
-  15% {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-  /* It stays visible for a while */
-  85% {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-  /* It fades out and moves down */
-  100% {
-    opacity: 0;
-    transform: translate(-50%, 20px);
-  }
-}
-
-
-
 /* ==========================================================================
-   6. Responsive Tablet & Desktop Styles
+   6. Responsive Styles
    ========================================================================== */
 @media (min-width: 768px) {
-
     /* --- Show Desktop Nav & Lang Switch --- */
     .desktop-lang-switch,
     .main-nav {

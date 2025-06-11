@@ -4,58 +4,99 @@ import { useLanguage } from '../../context/LanguageContext';
 
 const Contact = ({ data }) => {
   const { language } = useLanguage();
-  const [formState, setFormState] = useState({
-    submitting: false,
-    succeeded: false,
+
+  // --- State for submission status ---
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState(null);
+
+  // --- NEW: State to hold the form's input data ---
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
   });
 
-  // This effect will reset the success state after the popup animation finishes
+  // --- NEW: This checks if all required fields have text ---
+  const isFormValid = formData.name && formData.email && formData.message;
+
+  // --- This effect handles the success popup visibility ---
   useEffect(() => {
-    if (formState.succeeded) {
-      const timer = setTimeout(() => {
-        setFormState(prevState => ({ ...prevState, succeeded: false }));
-      }, 4000); // Hide after 4 seconds to let the animation complete
+    if (isSuccess) {
+      const timer = setTimeout(() => setIsSuccess(false), 4000);
       return () => clearTimeout(timer);
     }
-  }, [formState.succeeded]);
+  }, [isSuccess]);
 
-  const handleSubmit = (event) => {
+  // --- This effect handles the error message visibility ---
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => setError(null), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
+
+  // --- NEW: This function updates the state as the user types ---
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  // --- The submission handler ---
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setFormState({ submitting: true, succeeded: false });
+    if (!isFormValid) return; // Prevent submission if form is not valid
+
+    setIsSubmitting(true);
+    setError(null);
 
     const form = event.target;
-    const formData = new FormData(form);
+    const formSubmitData = new FormData(form);
 
-    fetch(form.action, {
-      method: form.method,
-      body: formData,
-      headers: {
-        'Accept': 'application/json'
-      }
-    }).then(response => {
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formSubmitData,
+        headers: { 'Accept': 'application/json' }
+      });
+
       if (response.ok) {
-        setFormState({ submitting: false, succeeded: true });
+        setIsSuccess(true);
         form.reset();
+        setFormData({ name: '', email: '', message: '' }); // Reset the form data state
       } else {
-        setFormState({ submitting: false, succeeded: false });
-        alert("Oops! There was a problem submitting your form.");
+        const data = await response.json();
+        if (data.errors) {
+          setError(data.errors.map(err => err.message).join(', '));
+        } else {
+          setError(language === 'fr' ? 'Une erreur est survenue.' : 'An error occurred.');
+        }
       }
-    }).catch(error => {
-      setFormState({ submitting: false, succeeded: false });
-      alert("Oops! There was a network problem.");
-    });
+    } catch (err) {
+      setError(language === 'fr' ? 'Problème de réseau.' : 'Network problem.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <Section id="contact">
       <div className="container contact-container">
-        {/* Conditionally render the success popup based on the 'succeeded' state */}
-        {formState.succeeded && (
+        {isSuccess && (
           <div className="success-popup">
             {language === 'fr' ? 'Message envoyé, merci !' : 'Message sent, thank you!'}
           </div>
         )}
-        
+
+        {error && (
+          <div className="error-popup">
+            {error}
+          </div>
+        )}
+
         <h2 className="section-title">{language === 'fr' ? 'Contactez-Moi' : 'Get In Touch'}</h2>
         <p className="section-subtitle">
           {language === 'fr'
@@ -65,7 +106,7 @@ const Contact = ({ data }) => {
         </p>
 
         <form
-          action="https://formspree.io/f/mdkzgkwe" // <-- PASTE YOUR FORMPSPREE URL HERE
+          action="https://formspree.io/f/mdkzgkwe"
           method="POST"
           onSubmit={handleSubmit}
           className="contact-form"
@@ -75,6 +116,8 @@ const Contact = ({ data }) => {
               type="text"
               name="name"
               placeholder={language === 'fr' ? 'Nom' : 'Name'}
+              value={formData.name} // NEW: Bind value to state
+              onChange={handleChange} // NEW: Handle changes
               required
             />
           </div>
@@ -83,6 +126,8 @@ const Contact = ({ data }) => {
               type="email"
               name="email"
               placeholder="Email"
+              value={formData.email} // NEW: Bind value to state
+              onChange={handleChange} // NEW: Handle changes
               required
             />
           </div>
@@ -91,13 +136,19 @@ const Contact = ({ data }) => {
               name="message"
               placeholder={language === 'fr' ? 'Message' : 'Message'}
               rows="6"
+              value={formData.message} // NEW: Bind value to state
+              onChange={handleChange} // NEW: Handle changes
               required
             ></textarea>
           </div>
-          
-          <button type="submit" className="contact-button" disabled={formState.submitting}>
-            {formState.submitting 
-              ? (language === 'fr' ? 'Envoi...' : 'Sending...') 
+
+          <button
+            type="submit"
+            className={`contact-button ${isFormValid ? 'contact-button-active' : ''}`} // NEW: Conditional class
+            disabled={!isFormValid || isSubmitting} // NEW: Disable if form is not valid
+          >
+            {isSubmitting
+              ? (language === 'fr' ? 'Envoi...' : 'Sending...')
               : (language === 'fr' ? 'Envoyer' : 'Send')}
           </button>
         </form>
