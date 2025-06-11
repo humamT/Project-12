@@ -1,0 +1,11 @@
+# This is a configuration file for Netlify
+
+[build]
+  # This tells Netlify where your built site is
+  publish = "dist" 
+
+[[redirects]]
+  # This is the same rule as your _redirects file
+  from = "/*"
+  to = "/index.html"
+  status = 200
