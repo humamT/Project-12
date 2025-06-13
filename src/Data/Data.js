@@ -18,7 +18,7 @@ const portfolioData = {
     },
     p2: {
       fr: "Je me spécialise dans le développement frontend avec React et possède une base solide en HTML, CSS et JavaScript. Je m'engage à écrire du code propre et maintenable et je suis toujours désireux d'apprendre de nouvelles technologies et d'améliorer mes compétences.",
-      en: "I specialize in frontend development with React and have a strong foundation in HTML, CSS, and JavaScript. I'm dedicated to writing clean, maintainable code and am always eager to learn new technologies and improve my skills.",
+      en: "I am specialized in frontend development with React and have a strong foundation in HTML, CSS, and JavaScript. I'm dedicated to writing clean, maintainable code and always eager to learn new technologies and improve my skills.",
     },
     p3: {
       fr: "Quand je ne code pas, j'aime le cinéma, les jeux vidéo et, bien sûr, explorer de nouveaux cafés.",

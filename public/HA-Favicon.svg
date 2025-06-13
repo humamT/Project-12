@@ -1,0 +1,17 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- This defines the background color -->
+  <rect width="100" height="100" fill="#FDFBF7"/>
+
+  <!-- This creates the text "HA" -->
+  <text 
+    x="50%" 
+    y="50%" 
+    dominant-baseline="central" 
+    text-anchor="middle" 
+    font-family="Arial, sans-serif" 
+    font-size="60" 
+    font-weight="bold" 
+    fill="#8C7A6B">
+      HA
+  </text>
+</svg>

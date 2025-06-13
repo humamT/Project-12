@@ -1,10 +1,12 @@
 const Footer = ({ data }) => {
 
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="footer">
       <div className="container">
         <p>
-          &copy; {new Date().getFullYear()} {data.name}.{' '}
+          &copy; {currentYear} {data.name}.{' '}
         </p>
       </div>
     </footer>

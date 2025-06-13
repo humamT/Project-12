@@ -5,25 +5,24 @@ import { useLanguage } from '../../context/LanguageContext';
 const Contact = ({ data }) => {
   const { language } = useLanguage();
 
-  // --- State for submission status ---
+  // --- OPTIMIZATION 1: More descriptive state variables ---
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(null); // State for handling form errors
 
-  // --- NEW: State to hold the form's input data ---
+  // --- State to hold the form's input data ---
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
 
-  // --- NEW: This checks if all required fields have text ---
   const isFormValid = formData.name && formData.email && formData.message;
 
   // --- This effect handles the success popup visibility ---
   useEffect(() => {
     if (isSuccess) {
-      const timer = setTimeout(() => setIsSuccess(false), 4000);
+      const timer = setTimeout(() => setIsSuccess(false), 4000); // Popup disappears after 4s
       return () => clearTimeout(timer);
     }
   }, [isSuccess]);
@@ -31,12 +30,11 @@ const Contact = ({ data }) => {
   // --- This effect handles the error message visibility ---
   useEffect(() => {
     if (error) {
-      const timer = setTimeout(() => setError(null), 5000);
+      const timer = setTimeout(() => setError(null), 5000); // Errors stay visible for 5s
       return () => clearTimeout(timer);
     }
   }, [error]);
 
-  // --- NEW: This function updates the state as the user types ---
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -45,10 +43,10 @@ const Contact = ({ data }) => {
     }));
   };
 
-  // --- The submission handler ---
+  // --- OPTIMIZATION 2: handleSubmit now uses async/await for better readability ---
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!isFormValid) return; // Prevent submission if form is not valid
+    if (!isFormValid) return;
 
     setIsSubmitting(true);
     setError(null);
@@ -66,8 +64,9 @@ const Contact = ({ data }) => {
       if (response.ok) {
         setIsSuccess(true);
         form.reset();
-        setFormData({ name: '', email: '', message: '' }); // Reset the form data state
+        setFormData({ name: '', email: '', message: '' });
       } else {
+        // Handle server-side errors from Formspree more gracefully
         const data = await response.json();
         if (data.errors) {
           setError(data.errors.map(err => err.message).join(', '));
@@ -76,8 +75,10 @@ const Contact = ({ data }) => {
         }
       }
     } catch (err) {
+      // Handle network errors
       setError(language === 'fr' ? 'Problème de réseau.' : 'Network problem.');
     } finally {
+      // This block runs whether the submission succeeds or fails
       setIsSubmitting(false);
     }
   };
@@ -91,7 +92,9 @@ const Contact = ({ data }) => {
           </div>
         )}
 
+        {/* OPTIMIZATION 3: The new error popup */}
         {error && (
+          // You would style this class in your CSS, likely similar to .success-popup but with a red color
           <div className="error-popup">
             {error}
           </div>
@@ -116,8 +119,8 @@ const Contact = ({ data }) => {
               type="text"
               name="name"
               placeholder={language === 'fr' ? 'Nom' : 'Name'}
-              value={formData.name} // NEW: Bind value to state
-              onChange={handleChange} // NEW: Handle changes
+              value={formData.name}
+              onChange={handleChange}
               required
             />
           </div>
@@ -126,8 +129,8 @@ const Contact = ({ data }) => {
               type="email"
               name="email"
               placeholder="Email"
-              value={formData.email} // NEW: Bind value to state
-              onChange={handleChange} // NEW: Handle changes
+              value={formData.email}
+              onChange={handleChange}
               required
             />
           </div>
@@ -136,16 +139,16 @@ const Contact = ({ data }) => {
               name="message"
               placeholder={language === 'fr' ? 'Message' : 'Message'}
               rows="6"
-              value={formData.message} // NEW: Bind value to state
-              onChange={handleChange} // NEW: Handle changes
+              value={formData.message}
+              onChange={handleChange}
               required
             ></textarea>
           </div>
 
           <button
             type="submit"
-            className={`contact-button ${isFormValid ? 'contact-button-active' : ''}`} // NEW: Conditional class
-            disabled={!isFormValid || isSubmitting} // NEW: Disable if form is not valid
+            className={`contact-button ${isFormValid ? 'contact-button-active' : ''}`}
+            disabled={!isFormValid || isSubmitting}
           >
             {isSubmitting
               ? (language === 'fr' ? 'Envoi...' : 'Sending...')

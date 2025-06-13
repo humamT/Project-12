@@ -12,7 +12,7 @@ const Skills = ({ data }) => {
         <p className="section-subtitle">
           {language === 'fr' 
             ? "J'ai de l'expérience avec une gamme de technologies de développement web modernes. Voici un résumé de ma boîte à outils techniques."
-            : "I have experience with a range of modern web development technologies. Here's a summary of my technical toolkit."
+            : "I have knowledge with a range of modern web development technologies. Here's a summary of my technical toolkit."
           }
         </p>
         <div className="skills-container">

@@ -1,6 +1,30 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import LanguageSwitch from '../LanguageSwitch/LanguageSwitch';
+
+// --- OPTIMIZATION 1: Create a custom hook for scroll logic ---
+// This separates the scroll-related logic from the component's rendering logic,
+// making the main component cleaner and the scroll logic reusable.
+const useScrollSpy = (setActiveSection) => {
+  useEffect(() => {
+    const handleScroll = () => {
+      let currentSectionId = 'home';
+      const sections = document.querySelectorAll('section[id]');
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (window.scrollY >= sectionTop - 150) {
+          currentSectionId = section.getAttribute('id');
+        }
+      });
+      setActiveSection(currentSectionId);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [setActiveSection]);
+};
+
 
 const Header = ({ activeSection, setActiveSection, data }) => {
   // --- STATE AND HOOKS ---
@@ -11,44 +35,45 @@ const Header = ({ activeSection, setActiveSection, data }) => {
   const mobileMenuRef = useRef();
 
   // --- NAVIGATION DATA ---
-  const navLinks = [
+  // Using React.useMemo here is a micro-optimization to ensure this array is not
+  // recreated on every render, though it's not strictly necessary for a small, static array.
+  const navLinks = React.useMemo(() => [
     { id: 'about', fr: 'À Propos', en: 'About' },
     { id: 'projects', fr: 'Projets', en: 'Projects' },
     { id: 'skills', fr: 'Compétences', en: 'Skills' },
     { id: 'contact', fr: 'Contact', en: 'Contact' }
-  ];
+  ], []);
 
   // --- MENU LOGIC ---
-  const openMenu = () => setIsMenuOpen(true);
+  // OPTIMIZATION 2: Wrap functions that are passed down or used in effects
+  // with useCallback to prevent them from being recreated on every render.
+  const openMenu = useCallback(() => setIsMenuOpen(true), []);
 
-  const closeMenu = () => {
+  const closeMenu = useCallback(() => {
     setIsMenuClosing(true);
     setTimeout(() => {
       setIsMenuOpen(false);
       setIsMenuClosing(false);
     }, 300);
-  };
+  }, []);
 
-  const handleMobileLangClick = (e) => {
-    e.preventDefault();
-    toggleLanguage();
-    closeMenu();
-  };
-
-  const handleNavLinkClick = () => {
-    closeMenu();
-  };
-
-  // --- This function handles toggling the menu state ---
-  const handleMenuToggle = () => {
-    if (isMenuOpen) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  };
+  const handleMenuToggle = useCallback(() => {
+    isMenuOpen ? closeMenu() : openMenu();
+  }, [isMenuOpen, closeMenu, openMenu]);
 
   // --- BROWSER EVENT HANDLERS (EFFECTS) ---
+
+  // Use our new custom hook for scroll spying
+  useScrollSpy(setActiveSection);
+
+  // Effect for the scrolled header style
+  useEffect(() => {
+    const handleScrollStyle = () => setIsScrolled(window.scrollY > 50);
+    window.addEventListener('scroll', handleScrollStyle, { passive: true });
+    return () => window.removeEventListener('scroll', handleScrollStyle);
+  }, []);
+
+  // Effect for handling clicks outside the mobile menu
   useEffect(() => {
     const handleOutsideClick = (event) => {
       if (isMenuOpen && mobileMenuRef.current && !mobileMenuRef.current.contains(event.target)) {
@@ -61,33 +86,24 @@ const Header = ({ activeSection, setActiveSection, data }) => {
       document.removeEventListener('mousedown', handleOutsideClick);
       document.removeEventListener('touchstart', handleOutsideClick);
     };
-  }, [isMenuOpen]);
+  }, [isMenuOpen, closeMenu]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-      let current = 'home';
-      document.querySelectorAll('section[id]').forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (window.scrollY >= sectionTop - 150) {
-          current = section.getAttribute('id');
-        }
-      });
-      setActiveSection(current);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [setActiveSection]);
 
   // --- HELPER FUNCTIONS ---
-  const getNavLinkClass = (sectionId) => {
+  const getNavLinkClass = useCallback((sectionId) => {
     return `nav-link ${activeSection === sectionId ? 'nav-link-active' : ''}`;
-  };
+  }, [activeSection]);
 
-  const getInitials = (name) => {
+  const getInitials = useCallback((name) => {
     if (!name) return "JD";
     return name.split(' ').map(n => n[0]).join('');
-  };
+  }, []);
+
+  const handleMobileLangClick = useCallback((e) => {
+    e.preventDefault();
+    toggleLanguage();
+    closeMenu();
+  }, [toggleLanguage, closeMenu]);
 
 
   // --- JSX RENDER ---
@@ -108,7 +124,6 @@ const Header = ({ activeSection, setActiveSection, data }) => {
           <LanguageSwitch />
         </div>
 
-        {/* --- REPLACED: The old button is replaced with this new SVG version --- */}
         <label className="mobile-menu-button" htmlFor="mobile-menu-check">
           <input
             id="mobile-menu-check"
@@ -132,7 +147,7 @@ const Header = ({ activeSection, setActiveSection, data }) => {
             {language === 'fr' ? 'Switch to English' : 'Passer au Français'}
           </a>
           {navLinks.map(link => (
-            <a key={link.id} href={`#${link.id}`} onClick={handleNavLinkClick} className={getNavLinkClass(link.id)}>
+            <a key={link.id} href={`#${link.id}`} onClick={closeMenu} className={getNavLinkClass(link.id)}>
               {link[language]}
             </a>
           ))}
