@@ -11,7 +11,7 @@ const Projects = ({ setSelectedProject, data }) => {
         <h2 className="section-title">{language === 'fr' ? 'Mes Projets' : 'My Projects'}</h2>
         <p className="section-subtitle">
           {language === 'fr' 
-            ? "Voici quelques projets sur lesquels j'ai travaillé. Ils démontrent mes compétences à transformer des idées en applications web fonctionnelles et conviviales."
+            ? "Voici quelques projets sur lesquels j'ai travaillé. Ils démontrent ma capabilité à transformer des idées en applications web fonctionnelles et conviviales."
             : "Here are some of the projects I've worked on, which show my skills in turning ideas into functional and user-friendly web applications."
           }
         </p>

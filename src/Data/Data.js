@@ -13,15 +13,15 @@ const portfolioData = {
   },
   about: {
     p1: {
-      fr: "Je m'appelle Humam, Je suis un développeur web passionné qui a le don de créer des sites web propres, efficaces et attrayants. Mon parcours dans le développement web a commencé par une fascination pour le fonctionnement d'Internet, qui s'est rapidement transformée en une carrière où je peux allier créativité et résolution de problèmes.",
+      fr: "Je m'appelle Humam, Je suis développeur web passionné, Je crée des sites web propres, efficaces et attrayants. Mon parcours dans le développement web a commencé par une fascination pour le fonctionnement des sites web, qui s'est rapidement transformée en une carrière où je peux allier créativité et résolution de problèmes.",
       en: "Hello! I'm Humam, a passionate web developer with a knack for creating clean, efficient, and engaging websites. My journey into web development started with a fascination for how things work on the internet, which quickly grew into a career where I can blend creativity with problem-solving.",
     },
     p2: {
-      fr: "Je me spécialise dans le développement frontend avec React et possède une base solide en HTML, CSS et JavaScript. Je m'engage à écrire du code propre et maintenable et je suis toujours désireux d'apprendre de nouvelles technologies et d'améliorer mes compétences.",
+      fr: "Je me spécialise dans le développement frontend avec React et j'ai une base solide en HTML, CSS et JavaScript. Je m'engage à écrire du code propre et maintenable et je suis toujours désireux d'apprendre de nouvelles technologies et d'améliorer mes compétences.",
       en: "I am specialized in frontend development with React and have a strong foundation in HTML, CSS, and JavaScript. I'm dedicated to writing clean, maintainable code and always eager to learn new technologies and improve my skills.",
     },
     p3: {
-      fr: "Quand je ne code pas, j'aime le cinéma, les jeux vidéo et, bien sûr, explorer de nouveaux cafés.",
+      fr: "Quand je ne code pas, j'aime le cinéma, les jeux vidéo et, bien sûr, boire du café.",
       en: "When I'm not coding, I enjoy cinemas, gaming, and of course exploring new cafes.",
     },
   },
