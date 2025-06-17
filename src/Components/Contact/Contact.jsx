@@ -103,7 +103,7 @@ const Contact = ({ data }) => {
         <h2 className="section-title">{language === 'fr' ? 'Contactez-Moi' : 'Get In Touch'}</h2>
         <p className="section-subtitle">
           {language === 'fr'
-            ? "Je suis ouvert pour des collaborations. Si vous avez un projet en tête, n'hésitez pas à me contacter."
+            ? "Je suis ouvert pour des collaborations. Si vous avez un projet en tête, n'hésitez pas à me contacter. "
             : "I'm open to new opportunities and collaborations. If you have a project in mind, feel free to reach out."
           }
         </p>
