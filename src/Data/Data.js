@@ -13,8 +13,8 @@ const portfolioData = {
   },
   about: {
     p1: {
-      fr: "Bonjour ! Je suis Humam, un développeur web passionné avec un talent pour créer des expériences numériques épurées, efficaces et engageantes. Mon parcours dans le développement web a commencé par une fascination pour le fonctionnement d'Internet, qui s'est rapidement transformée en une carrière où je peux allier créativité et résolution de problèmes.",
-      en: "Hello! I'm Humam, a passionate web developer with a knack for creating clean, efficient, and engaging digital experiences. My journey into web development started with a fascination for how things work on the internet, which quickly grew into a career where I can blend creativity with problem-solving.",
+      fr: "Je m'appelle Humam, Je suis un développeur web passionné qui a le don de créer des sites web propres, efficaces et attrayants. Mon parcours dans le développement web a commencé par une fascination pour le fonctionnement d'Internet, qui s'est rapidement transformée en une carrière où je peux allier créativité et résolution de problèmes.",
+      en: "Hello! I'm Humam, a passionate web developer with a knack for creating clean, efficient, and engaging websites. My journey into web development started with a fascination for how things work on the internet, which quickly grew into a career where I can blend creativity with problem-solving.",
     },
     p2: {
       fr: "Je me spécialise dans le développement frontend avec React et possède une base solide en HTML, CSS et JavaScript. Je m'engage à écrire du code propre et maintenable et je suis toujours désireux d'apprendre de nouvelles technologies et d'améliorer mes compétences.",
@@ -94,22 +94,22 @@ const portfolioData = {
         icon: "fa-comments", // FontAwesome icon name
         title: {
           fr: "Diplôme de la langue française DELF niveau B1",
-          en: "Frontend Training"
+          en: "Diploma in french language DELF level B1"
         },
         description: {
           fr: "Université de Caen - Bayeux (14) - 2021",
-          en: "OpenClassrooms certification in Frontend development, covering React, JavaScript, HTML5, CSS3, and UX/UI best practices."
+          en: "University of Caen - Bayeux (14) - 2021"
         }
       },
       {
         icon: "fa-graduation-cap", // FontAwesome icon name
         title: {
           fr: "Baccalauréat / Niveau bac en Informatique (STI2D-SIN)",
-          en: "Frontend Training"
+          en: "High school diploma / Bac in Computer Science (STI2D-SIN)"
         },
         description: {
           fr: "Lycée polyvalent Arcisses de Caumont - Bayeux(14) - 2020 / 2021",
-          en: "OpenClassrooms certification in Frontend development, covering React, JavaScript, HTML5, CSS3, and UX/UI best practices."
+          en: "polyvalent Arcisses de Caumont High school - Bayeux(14) - 2020 / 2021"
         }
       },
       {
@@ -120,7 +120,7 @@ const portfolioData = {
   },
   description: {
     fr: "OpenClassroom - 2024 / 2025",
-      en: "OpenClassrooms certification in Frontend development, covering React, JavaScript, HTML5, CSS3, and UX/UI best practices."
+      en: "OpenClassroom - 2024 / 2025"
   }
 },
       // Add more formations if needed
