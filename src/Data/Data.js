@@ -89,11 +89,47 @@ const portfolioData = {
   skills: {
     languages: ["JavaScript (ES6+)", "React.js", "HTML5", "CSS3"],
     tools: ["Git & GitHub", "npm / yarn", "VS Code", "Firebase", "Netlify", "Responsive Design"],
+    formation: [
+      {
+        icon: "fa-comments", // FontAwesome icon name
+        title: {
+          fr: "Diplôme de la langue française DELF niveau B1",
+          en: "Frontend Training"
+        },
+        description: {
+          fr: "Université de Caen - Bayeux (14) - 2021",
+          en: "OpenClassrooms certification in Frontend development, covering React, JavaScript, HTML5, CSS3, and UX/UI best practices."
+        }
+      },
+      {
+        icon: "fa-graduation-cap", // FontAwesome icon name
+        title: {
+          fr: "Baccalauréat / Niveau bac en Informatique (STI2D-SIN)",
+          en: "Frontend Training"
+        },
+        description: {
+          fr: "Lycée polyvalent Arcisses de Caumont - Bayeux(14) - 2020 / 2021",
+          en: "OpenClassrooms certification in Frontend development, covering React, JavaScript, HTML5, CSS3, and UX/UI best practices."
+        }
+      },
+      {
+  icon: "fa-code", // FontAwesome icon name
+    title: {
+    fr: "Formation FrontEnd Bac+2",
+      en: "Frontend Training"
   },
-  contact: {
-    email: "humam.01@hotmail.com",
+  description: {
+    fr: "OpenClassroom - 2024 / 2025",
+      en: "OpenClassrooms certification in Frontend development, covering React, JavaScript, HTML5, CSS3, and UX/UI best practices."
+  }
+},
+      // Add more formations if needed
+    ]
+  },
+contact: {
+  email: "humam.01@hotmail.com",
     linkedin: "https://www.linkedin.com/in/humam-altoukhi-aa1098274/",
-    github: "https://github.com/humamT",
+      github: "https://github.com/humamT",
   },
 };
 
