@@ -16,10 +16,10 @@ const Skills = ({ data }) => {
   return (
     <Section id="skills" className="section-bg-white">
       <div className="container">
-        <h2 className="section-title">{language === 'fr' ? 'Compétences Techniques & Formation' : 'Technical Skills & Education '}</h2>
+        <h2 className="section-title">{language === 'fr' ? 'Compétences Techniques & Formations' : 'Technical Skills & Education '}</h2>
         <p className="section-subtitle">
           {language === 'fr'
-            ? "J'ai de l'expérience avec une gamme de technologies de développement web modernes. Voici un résumé de ma boîte à outils techniques."
+            ? "un an d'expérience avec une gamme de technologies de développement web modernes. Voici un résumé de mes expériences:"
             : "I have knowledge with a range of modern web development technologies. Here's a summary of my technical toolkit."
           }
         </p>
